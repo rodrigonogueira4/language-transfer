@@ -25,8 +25,7 @@ BUCKET_NAME=${BUCKET_NAME:="lang_agnostic_europe"}
 export PYTHONPATH="./:./lang_transfer"
 
 # Experiments definition
-#FINETUNE_LANGUAGES=("ar" "de" "en" "es" "fi" "id" "ja" "ko" "ru" "zh")
-FINETUNE_LANGUAGES=("pt")
+FINETUNE_LANGUAGES=("ar" "de" "en" "es" "fi" "id" "ja" "ko" "pt" "ru" "zh")
 FINETUNE_SIZES=("6M" "19M" "60M" "189M" "600M" "6B")
 FINETUNE_EPOCH_STEPS=(12 37 115 361 1145 11445)  # number of steps to form an epoch
 EPOCHS=(10 10 10 10 10 3)  # number of steps to form an epoch
@@ -69,20 +68,20 @@ for (( j=0; j<$NUM_FINETUNE_LANGUAGES; j++ )); do
               --gin.WARMUP_STEPS=${WARMUP}
         fi
 
-        if [ -n "$PRETRAINED_LANGUAGE" ]; then
+        # if [ -n "$PRETRAINED_LANGUAGE" ]; then
 
-          TRAIN_STEPS=$((TRAIN_STEPS+11450))  # To account for pretraining steps
+        #   TRAIN_STEPS=$((TRAIN_STEPS+11450))  # To account for pretraining steps
 
-          python3 ${T5X_DIR}/t5x/train.py \
-              --gin_search_paths=${PROJECT_DIR} \
-              --gin_file="lang_transfer/configs/runs/finetune.${MODEL_SIZE}.gin" \
-              --gin.MODEL_DIR=\"${MODEL_BASE_DIR}/${PRETRAINED_LANGUAGE}_from_600M_${LANGUAGE}_${MODEL_SIZE}_${DATA_SIZE}\" \
-              --gin.MIXTURE_OR_TASK_NAME=\""langagnostic.${LANGUAGE}.${DATA_SIZE}"\" \
-              --gin.VAL_MIXTURE_OR_TASK_NAME=\""langagnostic.${LANGUAGE}.validation"\" \
-              --gin.TRAIN_STEPS=${TRAIN_STEPS} \
-              --gin.EVAL_PERIOD=${EVAL_PERIOD} \
-              --gin.WARMUP_STEPS=0 \
-              --gin.PRETRAINED_MODEL_PATH=\"${PRETRAINED_MODEL_CHECKPOINT}\"
-        fi
+        #   python3 ${T5X_DIR}/t5x/train.py \
+        #       --gin_search_paths=${PROJECT_DIR} \
+        #       --gin_file="lang_transfer/configs/runs/finetune.${MODEL_SIZE}.gin" \
+        #       --gin.MODEL_DIR=\"${MODEL_BASE_DIR}/${PRETRAINED_LANGUAGE}_from_600M_${LANGUAGE}_${MODEL_SIZE}_${DATA_SIZE}\" \
+        #       --gin.MIXTURE_OR_TASK_NAME=\""langagnostic.${LANGUAGE}.${DATA_SIZE}"\" \
+        #       --gin.VAL_MIXTURE_OR_TASK_NAME=\""langagnostic.${LANGUAGE}.validation"\" \
+        #       --gin.TRAIN_STEPS=${TRAIN_STEPS} \
+        #       --gin.EVAL_PERIOD=${EVAL_PERIOD} \
+        #       --gin.WARMUP_STEPS=0 \
+        #       --gin.PRETRAINED_MODEL_PATH=\"${PRETRAINED_MODEL_CHECKPOINT}\"
+        # fi
     done
 done
