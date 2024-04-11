@@ -1,8 +1,8 @@
 # Script arguments
 
-SPECIFIC_DATA_SIZE=${1}
-SPECIFIC_LANGUAGE=${2}
-MODEL_SIZE=${3}  # small and 550M
+MODEL_SIZE=${1}  # small and 550M
+SPECIFIC_DATA_SIZE=${2}
+SPECIFIC_LANGUAGE=${3}
 
 # Environment
 
@@ -13,7 +13,7 @@ BUCKET_NAME=${BUCKET_NAME:="lang_agnostic"}
 export PYTHONPATH="./:./lang_transfer"
 
 # Experiments definition
-LANGUAGES=("ar" "de" "en" "es" "fi" "id" "ja" "ko" "pt" "ru" "zh")
+LANGUAGES=("de" "en" "es" "fi" "id" "ja" "ko" "pt" "ru" "zh")
 DATASET_SIZES=("6M" "19M" "60M" "189M" "600M" "6B")
 EPOCH_STEPS=(12 37 115 361 1145 11445)  # number of steps to form an epoch
 EPOCHS=(10 10 10 10 10 10)  # number of steps to form an epoch

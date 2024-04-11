@@ -26,7 +26,7 @@ gcloud alpha compute tpus tpu-vm ssh $TPU_NAME \
 --zone $ZONE \
 --project=$PROJECT \
 --worker=all \
---command="cd ~/language-transfer;nohup bash scripts/run_all_pretrainings.sh 60M ar 550M > output.log 2>&1 &"
+--command="cd ~/language-transfer;nohup bash scripts/run_all_pretrainings.sh 550M 60M > output.log 2>&1 &"
 
 # See logs
 gcloud alpha compute tpus tpu-vm ssh $TPU_NAME \
