@@ -19,7 +19,7 @@ EPOCH_STEPS=(12 37 115 361 1145 11445)  # number of steps to form an epoch
 EPOCHS=(10 10 10 10 10 10)  # number of steps to form an epoch
 WARMUP_STEPS=(0 0 30 100 300 3000)
 MODEL_BASE_DIR="gs://${BUCKET_NAME}/models/finetune"
-NUM_FINETUNES=${#FINETUNE_SIZES[@]}
+NUM_FINETUNES=${#DATASET_SIZES[@]}
 
 
 for LANGUAGE in "${LANGUAGES[@]}"; do
