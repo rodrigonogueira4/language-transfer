@@ -7,7 +7,7 @@ MODEL_SIZE=${3}  # small and 550M
 # Environment
 
 PROJECT_DIR="./lang_transfer/"
-T5X_DIR="~/language-transfer/t5x"  # directory where the t5x is cloned.
+T5X_DIR="./t5x"  # directory where the t5x is cloned.
 BUCKET_NAME=${BUCKET_NAME:="lang_agnostic"}
 
 export PYTHONPATH="./:./lang_transfer"
