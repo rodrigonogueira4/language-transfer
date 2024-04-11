@@ -14,21 +14,21 @@ do
   ((trial+=1))
 done
 
-
+# Install packages
 gcloud alpha compute tpus tpu-vm ssh $TPU_NAME \
   --zone $ZONE \
   --project=$PROJECT \
   --worker=all \
-  --command="pip install 'jax[tpu]==0.4.6' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html; rm -rf ~/language-transfer; git clone --recurse-submodules --branch backup-scripts https://github.com/rodrigonogueira4/language-transfer.git;cd ~/t5x; python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html;pip install -U pyglove==0.4.3"
+  --command="rm -rf ~/language-transfer;git clone --branch backup-scripts https://github.com/rodrigonogueira4/language-transfer.git; rm -rf ~/language-transfer/t5x; cd ~/language-transfer; git clone --branch main https://<code-here>@github.com/maritaca-ai/t5x.git;cd ~/language-transfer/t5x; python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html;python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html; pip install -U pyglove==0.4.3"
 
-
+# Run training script
 gcloud alpha compute tpus tpu-vm ssh $TPU_NAME \
 --zone $ZONE \
 --project=$PROJECT \
 --worker=all \
---command="cd ~/language-transfer;nohup bash ./run_all_pretrainings.sh 60M ar 550M > output.log 2>&1 &"
+--command="cd ~/language-transfer;nohup bash scripts/run_all_pretrainings.sh 60M ar 550M > output.log 2>&1 &"
 
-
+# See logs
 gcloud alpha compute tpus tpu-vm ssh $TPU_NAME \
 --zone $ZONE \
 --project=$PROJECT \
