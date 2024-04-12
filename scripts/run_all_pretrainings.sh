@@ -13,7 +13,7 @@ BUCKET_NAME=${BUCKET_NAME:="lang_agnostic"}
 export PYTHONPATH="./:./lang_transfer"
 
 # Experiments definition
-LANGUAGES=("de" "en" "es" "fi" "id" "ja" "ko" "pt" "ru" "zh")
+LANGUAGES=("ar" "de" "en" "es" "fi" "id" "ja" "ko" "pt" "ru" "zh")
 DATASET_SIZES=("6M" "19M" "60M" "189M" "600M" "6B")
 EPOCH_STEPS=(12 37 115 361 1145 11445)  # number of steps to form an epoch
 EPOCHS=(10 10 10 10 10 10)  # number of steps to form an epoch
