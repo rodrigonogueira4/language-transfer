@@ -19,7 +19,7 @@ gcloud alpha compute tpus tpu-vm ssh $TPU_NAME \
   --zone $ZONE \
   --project=$PROJECT \
   --worker=all \
-  --command="rm -rf ~/language-transfer;git clone --branch backup-scripts https://github.com/rodrigonogueira4/language-transfer.git; rm -rf ~/language-transfer/t5x; cd ~/language-transfer; git clone --branch main https://<code-here>@github.com/maritaca-ai/t5x.git;cd ~/language-transfer/t5x; python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html;python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html; pip install -U pyglove==0.4.3"
+  --command="pip install 'jax[tpu]==0.4.6' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html; rm -rf ~/language-transfer;git clone --branch backup-scripts https://github.com/rodrigonogueira4/language-transfer.git; rm -rf ~/language-transfer/t5x; cd ~/language-transfer; git clone --branch main https://<code-here>@github.com/maritaca-ai/t5x.git;cd ~/language-transfer/t5x; python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html;python3 -m pip install -e '.[tpu]' -f https://storage.googleapis.com/jax-releases/libtpu_releases.html; pip install -U pyglove==0.4.3"
 
 # Run training script
 gcloud alpha compute tpus tpu-vm ssh $TPU_NAME \
