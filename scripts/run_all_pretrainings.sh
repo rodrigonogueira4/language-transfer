@@ -15,7 +15,7 @@ export PYTHONPATH="./:./lang_transfer"
 # Experiments definition
 LANGUAGES=("ar" "de" "en" "es" "fi" "id" "ja" "ko" "pt" "ru" "zh")
 DATASET_SIZES=("6M" "19M" "60M" "189M" "600M" "6B")
-EPOCH_STEPS=(12 37 115 361 1145 11445)  # number of steps to form an epoch
+ALL_EPOCH_STEPS=(12 37 115 361 1145 11445)  # number of steps to form an epoch
 EPOCHS=(10 10 10 10 10 10)  # number of steps to form an epoch
 WARMUP_STEPS=(0 0 30 100 300 3000)
 MODEL_BASE_DIR="gs://${BUCKET_NAME}/models/finetune"
@@ -31,7 +31,7 @@ for LANGUAGE in "${LANGUAGES[@]}"; do
 
     for (( i=0; i<$NUM_FINETUNES; i++ )); do
         DATA_SIZE=${DATASET_SIZES[$i]}
-        EPOCH_STEPS=${EPOCH_STEPS[$i]}
+        EPOCH_STEPS=${ALL_EPOCH_STEPS[$i]}
         EPOCHS_TO_TRAIN=${EPOCHS[$i]}
         WARMUP=${WARMUP_STEPS[$i]}
 
