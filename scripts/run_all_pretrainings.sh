@@ -48,7 +48,7 @@ for LANGUAGE in "${LANGUAGES[@]}"; do
         python3 ${T5X_DIR}/t5x/train.py \
             --gin_search_paths=${PROJECT_DIR} \
             --gin_file="lang_transfer/configs/runs/train_scratch.${MODEL_SIZE}.gin" \
-            --gin.MODEL_DIR=\"${MODEL_BASE_DIR}/exp23" \
+            --gin.MODEL_DIR=\"${MODEL_BASE_DIR}/exp23\" \
             --gin.MIXTURE_OR_TASK_NAME=\""langagnostic.${LANGUAGE}.${DATA_SIZE}"\" \
             --gin.VAL_MIXTURE_OR_TASK_NAME=\""langagnostic.${LANGUAGE}.validation"\" \
             --gin.TRAIN_STEPS=${TRAIN_STEPS} \
