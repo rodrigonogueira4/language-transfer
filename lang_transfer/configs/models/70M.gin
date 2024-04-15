@@ -66,5 +66,5 @@ network.TransformerConfig:
   mlp_dim = 2560
   mlp_activations = ('gelu', 'linear')
   dropout_rate = %DROPOUT_RATE
-  logits_via_embedding = True
+  logits_via_embedding = False
 
